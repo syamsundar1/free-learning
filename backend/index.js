@@ -15,7 +15,7 @@ const userRoute = require("./routes/user");
 app.use("/user", userRoute);
 
 app.get('/',(req,res) => {
-    res.send("server is running");
+    res.send("server is running fine");
 });
 
 const port = process.env.PORT || 3000;
