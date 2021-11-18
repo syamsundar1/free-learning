@@ -85,13 +85,13 @@ class _LoginPageState extends State<LoginPage> {
           //                 }, 
 
 
-          ElevatedButton(onPressed: () async{ 
-                   var response = await http.post(Uri.parse("https://free-learning-backend.herokuapp.com/auth/login"),body: {"email":_emailController.text.trim(),"password":_passwordController.text.trim()});      
-                    if(response.statusCode==200){
-                      Navigator.push(
-                             context,
-                             MaterialPageRoute(builder: (context) => const Register()),
-                               );
+          ElevatedButton(onPressed: () async{
+            var response = await http.post(Uri.parse("https://free-online-learning.herokuapp.com/user/login"),body: {"email":_emailController.text.trim(),"password":_passwordController.text.trim()});
+            if(response.statusCode==200 || response.statusCode==201){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Register()),
+              );
                     }    
                     else{
                       print("something went worng");
