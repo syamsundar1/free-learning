@@ -15,3 +15,5 @@ dummydata = [
 router.route('/data').get((req,res) => {
     res.send(dummydata);
 });
+
+module.exports = router;

@@ -6,7 +6,6 @@ import 'package:free_learning/network/auth.dart';
 import 'package:free_learning/network/network_handler.dart';
 import 'package:free_learning/screens/courses.dart';
 import 'package:free_learning/screens/register.dart';
-import 'package:http/http.dart';
 
 // ignore: unused_element
 final _emailController = TextEditingController();
@@ -62,45 +61,18 @@ class _LoginPageState extends State<LoginPage> {
               hintText: 'Enter your password',
             ),
           ),
-
-
-
-
-
-          // ElevatedButton(onPressed: (){
-          //                   Auth().login(
-          //                     email: _emailController.text.trim(), 
-          //                     password: _passwordController.text.trim(), 
-          //                     onSuccess: (){
-          //                      Navigator.push(
-          //                    context,
-          //                    MaterialPageRoute(builder: (context) => const Register()),
-          //                      );
-          //                     }, 
-          //                     onError: (err){
-          //                      // ignore: avoid_print
-          //                      print('ERROR');
-          //                     }
-          //                   );
-          //                 }, 
-
-
           ElevatedButton(onPressed: () async{
-            var response = await http.post(Uri.parse("https://free-online-learning.herokuapp.com/user/login"),body: {"email":_emailController.text.trim(),"password":_passwordController.text.trim()});
-            if(response.statusCode==200 || response.statusCode==201){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Register()),
-              );
-                    }    
-                    else{
-                      print("something went worng");
-                    }
+            var response = await http.post(Uri.parse("https://free-online-learning.herokuapp.com/user/login"),body: {"email":_emailController,"password":_passwordController});
+            if(response.statusCode==200){
+              Navigator.pushNamed((context), ('/register'));
+            }
+            else{
+              print("something went wrong!");
+            }
           },
-
-                          child: 
-          const Text('Login',style: TextStyle(fontSize: 20.0),),
+              child: Text('LOGIN')
           ),
+
           Row(
             // ignore: prefer_const_literals_to_create_immutables
             children: [

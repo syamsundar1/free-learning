@@ -27,7 +27,7 @@ router.route("/login").post((req,res) => {
       if(result === null){
         return res.status(403).json("username is wrong");
       }
-      if(result.password === req.body.password){
+      if(result.password === req.body.password && result.email === req.body.email){
         res.json("logined in");
       }else{
         res.status(403).json("password is wrong");
